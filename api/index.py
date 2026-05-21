@@ -13,12 +13,12 @@ os.environ.setdefault('ALLOWED_HOSTS', '.vercel.app,localhost,127.0.0.1')
 os.environ.setdefault('CORS_ALLOW_ALL_ORIGINS', 'False')  # same-origin on Vercel — no CORS needed
 os.environ.setdefault('DEBUG', 'False')
 
-import django
-django.setup()
-
-# Run migrations on cold start (Vercel's /tmp is writable and persists across warm invocations)
+# Must be set before django.setup() so settings.py picks it up
 _db_path = '/tmp/spotter.sqlite3'
 os.environ['DB_PATH'] = _db_path
+
+import django
+django.setup()
 
 if not os.path.exists(_db_path):
     from django.core.management import call_command
