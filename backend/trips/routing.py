@@ -16,21 +16,11 @@ def geocode(address: str) -> Optional[Tuple[float, float]]:
     try:
         resp = requests.get(
             NOMINATIM_URL,
-            params={"q": address, "format": "json", "limit": 1, "countrycodes": "us"},
-            headers=HEADERS,
-            timeout=10,
-        )
-        resp.raise_for_status()
-        data = resp.json()
-        if data:
-            return float(data[0]["lat"]), float(data[0]["lon"])
-        # retry without US restriction
-        resp = requests.get(
-            NOMINATIM_URL,
             params={"q": address, "format": "json", "limit": 1},
             headers=HEADERS,
             timeout=10,
         )
+        resp.raise_for_status()
         data = resp.json()
         if data:
             return float(data[0]["lat"]), float(data[0]["lon"])
