@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Leaflet z-index fixes */
+.leaflet-pane { z-index: 1; }
+.leaflet-top,
+.leaflet-bottom { z-index: 2; }
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+/* Smooth transitions */
+.tab-active {
+  @apply border-b-2 border-blue-600 text-blue-600 font-semibold;
+}
+
+/* ELD canvas container */
+.eld-canvas-wrap {
+  position: relative;
+  width: 100%;
+  background: white;
+}
+
+/* Print styles */
+@media print {
+  .no-print { display: none !important; }
+  .print-break { page-break-after: always; }
+}

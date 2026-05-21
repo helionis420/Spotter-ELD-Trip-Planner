@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: spotter-eld-backend
+    runtime: python
+    buildCommand: pip install -r requirements.txt && python manage.py migrate --run-syncdb
+    startCommand: gunicorn spotter.wsgi --log-file -
+    envVars:
+      - key: DEBUG
+        value: False
+      - key: CORS_ALLOW_ALL_ORIGINS
+        value: True
+      - key: SECRET_KEY
+        generateValue: true
