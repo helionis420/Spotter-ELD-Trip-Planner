@@ -85,6 +85,7 @@ export default function RouteMap({ waypoints = [], routeGeometry }) {
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        noWrap={true}
       />
 
       <FitBounds positions={boundPositions} />
